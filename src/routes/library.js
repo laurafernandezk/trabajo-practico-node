@@ -1,30 +1,17 @@
 const express = require("express");
+const {libraryController}= require("../controllers")
 
 const router = express.Router();
 
-router.get("/:libraryId", (req, res)=>
-    res.json({libreryId: req.params.libraryId, name: "El ateneo"
-    })
-)
+router.get("/", libraryController.getAllLibraries);
 
-router.post("/", (req, res)=>{
+router.get("/:libraryId", libraryController.getLibrary);
 
-console.log(req.body);
-console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-res.json(req.body)
-})
+router.post("/", libraryController.createLibrary );
 
-router.put("/:libraryId", (req, res)=>{
-console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-res.json({id:req.params.libraryId, ...req.body})
-}
-)
+router.put("/:libraryId", libraryController.updateLibrary );
 
-router.delete("/:libraryId", (req, res)=>{
-console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-res.json({})
-}
-)
+router.delete("/:libraryId",libraryController.deleteLibrary); 
 
 module.exports = router
 
