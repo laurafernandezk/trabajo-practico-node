@@ -8,7 +8,7 @@ const bookModel = sequelize.define("Books",{
     autoIncrement:true
   },
   isbn:{
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull:false
 
   },
@@ -27,7 +27,12 @@ const bookModel = sequelize.define("Books",{
   library:{
     type: DataTypes.NUMBER,
     allowNull:false
-  }
+  },
+  /*deleted:{
+    type: DataTypes.BOOLEAN,
+    defaultValue:false,
+    allowNull:false
+  }*/
 });
 
-module.exports = bookModelook;
+module.exports = bookModel;

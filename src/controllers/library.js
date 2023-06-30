@@ -1,27 +1,45 @@
 const {libraryService} = require("../services")
 
-const createLibrary = (req, res) => {
-  const library = libraryService.createLibrary(req.body)
-  res.json(library);
+const createLibrary =  async (req, res) => {
+  try{
+  const newLibrary =  await libraryService.createLibrary(req.body)
+  res.json(newLibrary);
+  }catch(error){
+    res.status(500).json({action: "createLibrary", error: error.message})
+  }
 };
 
-const getAllLibraries =(req, res)=>{
-  res.setHeader("Content-Type", "application/json")
-  res.send({libreria: "el ateneo"})
-}
+const getAllLibraries =  async (req, res) => {
+  try{
+  const libraries =  await libraryService.getAllLibraries()
+  res.json(libraries);
+  }catch(error){
+    res.status(500).json({action: "getAllLibraries", error: error.message})
+  }
+};
 
-const getLibrary = (req, res)=>
-res.json({libreryId: req.params.libraryId, name: "El ateneo"
-})
-const updateLibrary =(req, res)=>{
+const getLibrary =  async (req, res) => {
+  try{
+  const library=  await libraryService.getLibrary(req.params.libraryId)
+    if(!library){
+      res.status(404).json({action: "getLibrary", error: error.message})
+    }else{
+      res.json(library);
+    }
+  }catch(error){
+    res.status(500).json({action: "getLibrary", error: error.message})
+  }
+};
+
+/*const updateBook =(req, res)=>{
     console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-    res.json({id:req.params.libraryId, ...req.body})
+    res.json({id:req.params.bookId, ...req.body})
     }
 
-const deleteLibrary = (req, res)=>{
+const deleteBook= (req, res)=>{
     console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
     res.json({})
-    }
+    }*/
 
 
-module.exports = {createLibrary, getAllLibraries, getLibrary, updateLibrary, deleteLibrary}
+module.exports = {createLibrary, getAllLibraries, getLibrary}

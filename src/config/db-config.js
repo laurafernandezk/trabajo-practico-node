@@ -9,7 +9,7 @@ const initializeDB = async () => {
   try {
     await sequelize.authenticate();
     console.log("Conexion con la base de datos establecida");
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
   } catch (error) {
     console.log(
       console.log("Hubo un error al inicializar la base de datos", error)

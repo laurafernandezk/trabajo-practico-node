@@ -9,9 +9,9 @@ router.get("/:libraryId", libraryController.getLibrary);
 
 router.post("/", libraryController.createLibrary );
 
-router.put("/:libraryId", libraryController.updateLibrary );
+/*router.put("/:libraryId", libraryController.updateLibrary );
 
-router.delete("/:libraryId",libraryController.deleteLibrary); 
+router.delete("/:libraryId",libraryController.deleteLibrary); */
 
 module.exports = router
 

@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db-config");
+const bookModel = require("./book")
+
 
 const libraryModel = sequelize.define("Libraries",{
   id:{
@@ -19,8 +21,16 @@ const libraryModel = sequelize.define("Libraries",{
   telephone:{
     type: DataTypes.STRING,
     allowNull:false
-  }
+  },
+  /*deleted:{
+    type: DataTypes.BOOLEAN,
+    defaultValue:false,
+    allowNull:false
+  }*/
 });
+
+/*libraryModel.hasMany(bookModel)
+bookModel.belongsTo(libraryModel)*/
 
 module.exports = libraryModel;
 
