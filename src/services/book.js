@@ -1,4 +1,4 @@
-const { bookProvider } = require("../providers")
+const {bookProvider} = require("../providers")
 
 const createBook= async (book)=>{
     const newBook = await bookProvider.createBook(book);
@@ -20,12 +20,32 @@ const getBook= async (bookId)=>{
    if (book){
     console.log(book)
    }else{
-    console.log("Can't access book")
+    console.log("There are no books for that request")
    }
    return book
 }
 
+const updateBook= async (bookId, updatedBook)=>{
+    const book = await bookProvider.updateBook(bookId, updatedBook);
+    if (book){
+     console.log(book)
+    }else{
+     console.log("Can't access book")
+    }
+    return book
+ }
+
+ const deleteBook= async (bookId)=>{
+    const book = await bookProvider.deleteBook(bookId);
+    if (book){
+     console.log(book)
+    }else{
+     console.log("Can't access book")
+    }
+    return book
+ }
 
 
 
-module.exports = {createBook, getAllBooks, getBook}
+
+module.exports = {createBook, getAllBooks, getBook,updateBook, deleteBook}

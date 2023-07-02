@@ -31,14 +31,32 @@ const getBook =  async (req, res) => {
   }
 };
 
-const updateBook =(req, res)=>{
-    console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-    res.json({id:req.params.bookId, ...req.body})
-    }
+const updateBook = async (req, res) =>{ 
+  try{
+    const updatedBook=  await bookService.updateBook(req.params.bookId, req.body)
 
-const deleteBook= (req, res)=>{
-    console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-    res.json({})
+      if(!updatedBook){
+        res.status(404).json({action: "updateBook", error: error.message})
+      }else{
+        res.json({id: req.params.bookId, ... req.body});
+      }
+    }catch(error){
+      res.status(500).json({action: "updateBook", error: error.message})
+    }
+  };
+    
+const deleteBook= async (req, res)=>{
+  try{
+    const deletedBook=  await bookService.deleteBook(req.params.bookId)
+
+      if(!deletedBook){
+        res.status(404).json({action: "deletedBook", error: error.message})
+      }else{
+        res.json({id: req.params.bookId});
+      }
+    }catch(error){
+      res.status(500).json({action: "deleteBook", error: error.message})
+    }
     }
 
 

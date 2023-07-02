@@ -1,5 +1,5 @@
 const bookProvider = require("./book");
 const libraryProvider = require("./library")
-const userProvider = require("./library")
+const userProvider = require("./user")
 
-module.export ={ libraryProvider, bookProvider, userProvider}
+module.exports ={ libraryProvider, bookProvider, userProvider}

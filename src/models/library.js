@@ -22,15 +22,17 @@ const libraryModel = sequelize.define("Libraries",{
     type: DataTypes.STRING,
     allowNull:false
   },
-  /*deleted:{
+  deleted:{
     type: DataTypes.BOOLEAN,
     defaultValue:false,
     allowNull:false
-  }*/
+  }
 });
 
-/*libraryModel.hasMany(bookModel)
-bookModel.belongsTo(libraryModel)*/
+libraryModel.hasMany(bookModel,{
+  foreignKey: 'library'
+} )
+bookModel.belongsTo(libraryModel)
 
 module.exports = libraryModel;
 

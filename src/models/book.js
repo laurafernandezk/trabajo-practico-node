@@ -28,11 +28,11 @@ const bookModel = sequelize.define("Books",{
     type: DataTypes.NUMBER,
     allowNull:false
   },
-  /*deleted:{
+  deleted:{
     type: DataTypes.BOOLEAN,
     defaultValue:false,
     allowNull:false
-  }*/
+  }
 });
 
 module.exports = bookModel;
