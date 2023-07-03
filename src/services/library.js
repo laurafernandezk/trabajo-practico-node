@@ -24,7 +24,27 @@ const getLibrary= async (libraryId)=>{
    return library
 }
 
+const updateLibrary= async (libraryId, updatedLibrary)=>{
+    const library = await libraryProvider.updateLibrary(libraryId, updatedLibrary);
+    if (library){
+     console.log(library)
+    }else{
+     console.log("Can't access library")
+    }
+    return library
+ }
+
+ const deleteLibrary= async (libraryId)=>{
+    const library = await libraryProvider.deleteLibrary(libraryId);
+    if (library){
+     console.log(library)
+    }else{
+     console.log("Can't access library")
+    }
+    return library
+ }
 
 
 
-module.exports = {createLibrary, getAllLibraries, getLibrary}
+
+module.exports = {createLibrary, getAllLibraries, getLibrary, updateLibrary, deleteLibrary}

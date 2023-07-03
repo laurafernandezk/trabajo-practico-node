@@ -31,15 +31,33 @@ const getLibrary =  async (req, res) => {
   }
 };
 
-/*const updateBook =(req, res)=>{
-    console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-    res.json({id:req.params.bookId, ...req.body})
+const updateLibrary = async (req, res) =>{ 
+  try{
+    const updatedLibrary=  await libraryService.updateLibrary(req.params.libraryId, req.body)
+
+      if(!updatedLibrary){
+        res.status(404).json({action: "updateLibrary", error: error.message})
+      }else{
+        res.json({id: req.params.libraryId, ... req.body});
+      }
+    }catch(error){
+      res.status(500).json({action: "updateLibrary", error: error.message})
+    }
+  };
+    
+const deleteLibrary= async (req, res)=>{
+  try{
+    const deletedLibrary=  await libraryService.deleteLibrary(req.params.libraryId)
+
+      if(!deletedLibrary){
+        res.status(404).json({action: "deleteLibrary", error: error.message})
+      }else{
+        res.json({id: req.params.libraryId});
+      }
+    }catch(error){
+      res.status(500).json({action: "deleteLibrary", error: error.message})
+    }
     }
 
-const deleteBook= (req, res)=>{
-    console.log(`metodo ${req.method} en la url ${req.url} con el siguiente contenido ${req.body}` )
-    res.json({})
-    }*/
 
-
-module.exports = {createLibrary, getAllLibraries, getLibrary}
+module.exports = {createLibrary, getAllLibraries, getLibrary, updateLibrary, deleteLibrary}

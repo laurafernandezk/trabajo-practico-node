@@ -2,10 +2,9 @@ const express = require("express");
 const { libraryRouter, bookRouter, userRouter } = require("./routes");
 const { setHeader } = require("./middleware");
 const { initializeDB } = require("./config/db-config")
-const { libraryModel, bookModel, userModel} = require("./models")
 
 const app = express();
-const PORT = 3060;
+const PORT = 3000;
 
 app.use(express.json());
 app.use(setHeader);

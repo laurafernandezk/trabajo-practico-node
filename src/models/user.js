@@ -27,6 +27,11 @@ const userModel = sequelize.define("Users",{
   password:{
     type: DataTypes.STRING,
     allowNull:false
+  },
+  deleted:{
+    type: DataTypes.BOOLEAN,
+    defaultValue:false,
+    allowNull:false
   }
 });
 
